@@ -15,8 +15,8 @@ public class GreetingController {
 
 
     @GetMapping("/greeting")
-    public GreetingReply greeting(@RequestParam(value = "code") String code, @RequestParam(value = "state", defaultValue = "") String state) {
+    public void greeting(@RequestParam(value = "code") String code, @RequestParam(value = "state", defaultValue = "") String state) {
         logger.info("Got code" + code);
-        return new GreetingReply(0, "Returned " + code);
+        //return new GreetingReply(0, "Returned " + code);
     }
 }
