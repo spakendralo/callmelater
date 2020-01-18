@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class GreetingController {
 
     Logger logger = LoggerFactory.getLogger(GreetingController.class);
-    final String DEX_PROD = "api.dexcom.com";
-    final String DEX_SAND = "sandbox-api.dexcom.com";
+    final static String DEX_PROD = "api.dexcom.com";
+    final static String DEX_SAND = "sandbox-api.dexcom.com";
+    static final String REDIRECT_URI = "https://callmelater.herokuapp.com/greeting";
     String DEX_HOST = DEX_SAND;
 
 
@@ -35,7 +36,7 @@ public class GreetingController {
                 "&code=" +
                 code +
                 "&grant_type=authorization_code&redirect_uri=" +
-                "{your_redirect_uri}" +
+                REDIRECT_URI +
                 "");
         Request request = new Request.Builder()
                 .url("https://" + DEX_HOST + "/v2/oauth2/token")
