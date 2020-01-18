@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lu.pistache.callmelater.model.AccessToken;
 import org.junit.jupiter.api.Test;
-import sun.jvm.hotspot.utilities.Assert;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 
 public class ModelTest {
@@ -19,7 +21,7 @@ public class ModelTest {
                 "}";
         ObjectMapper mapper = new ObjectMapper();
         AccessToken token = mapper.readValue(string, AccessToken.class);
-        Assert.that(token.getAccessToken().equals(accessTokenString), "Can't parse correctly");
+        assertThat(token.getAccessToken()).isEqualTo(accessTokenString);
 
 
     }
