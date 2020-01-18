@@ -54,11 +54,11 @@ public class GreetingController {
                 .build();
 
         Response response = client.newCall(request).execute();
-        logger.info("Got access token response object " + response.toString());
-        logger.info("Got access token response body " + response.body().string());
+        String accessTokenString = response.body().string();
+        logger.info("Got access token response body " + accessTokenString);
 
         ObjectMapper mapper = new ObjectMapper();
-        AccessToken token = mapper.readValue(response.body().string(), AccessToken.class);
+        AccessToken token = mapper.readValue(accessTokenString, AccessToken.class);
 
 
 
