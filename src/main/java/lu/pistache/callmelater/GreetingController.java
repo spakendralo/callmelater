@@ -47,5 +47,6 @@ public class GreetingController {
 
         Response response = client.newCall(request).execute();
         logger.info("Got access token response " + response.toString());
+        logger.info("Got access token response " + response.body().string());
     }
 }
