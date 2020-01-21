@@ -8,7 +8,10 @@ import com.squareup.okhttp.*;
 import lu.pistache.callmelater.model.AccessToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,12 +31,12 @@ public class GreetingController {
      * @throws IOException
      */
     @GetMapping("/greeting")
-    public void greeting(@RequestParam(value = "code") String code, @RequestParam(value = "state", defaultValue = "") String state) throws IOException {
+    public ResponseEntity<String> greeting(@RequestParam(value = "code") String code, @RequestParam(value = "state", defaultValue = "") String state) throws IOException {
         logger.info("Got code " + code);
         OkHttpClient client = new OkHttpClient();
 
-        String clientId = "weP9DT4racO6xmu5iDG94M7j73bpqbW5";
-        String clientSecret = "mpoSSYGpd5owOmvX";
+        String clientId = "sMRvoknPpG1UZbUkcmSN9nwp5YEb1iQj";
+        String clientSecret = "5CZBsIfIDUeOeAjn";
 
         //step four, get access token
         MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
@@ -60,12 +63,11 @@ public class GreetingController {
         ObjectMapper mapper = new ObjectMapper();
         AccessToken token = mapper.readValue(accessTokenString, AccessToken.class);
 
-
-
-
+        return new ResponseEntity<String>("Vse v redu : "
+                + accessTokenString, HttpStatus.OK);
 
 //        request = new Request.Builder()
-//                .url("https://\" + DEX_HOST + \"/v2/users/self/egvs?startDate=2019-06-16T15:30:00&endDate=2019-06-16T15:45:00")
+//                .url("https://\" + DEX_HOST + \"/v2/users/self/egvs?startDate=2020-01-19T18:00:00&endDate=2020-01-19T18:15:00")
 //                .get()
 //                .addHeader("authorization", "Bearer {your_access_token}")
 //                .build();
